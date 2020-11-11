@@ -48,6 +48,7 @@ private Q_SLOTS:
     void backgroundColorChanged(const QColor &color);
     void alignmentChanged();
     void styleChanged();
+	void tabChanged(const int index);
     void displayUnitChanged(const QString &text);
     void aliasChanged(const QString &text);
 private:

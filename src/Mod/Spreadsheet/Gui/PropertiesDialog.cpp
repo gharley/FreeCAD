@@ -122,6 +122,9 @@ PropertiesDialog::PropertiesDialog(Sheet *_sheet, const std::vector<Range> &_ran
     // Display unit
     connect(ui->displayUnit, SIGNAL(textEdited(QString)), this, SLOT(displayUnitChanged(QString)));
 
+	// Tab
+	connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(tabChanged(int)));
+
     // Alias is only allowed for a single cell
     ui->tabWidget->widget(4)->setEnabled(_ranges.size() == 1 && _ranges[0].size() == 1);
 
@@ -178,6 +181,24 @@ void PropertiesDialog::styleChanged()
         else
             style.erase("underline");
     }
+}
+
+void PropertiesDialog::tabChanged(const int index)
+{
+	switch (index) {
+	case 0:
+	case 1:
+	case 2:
+		break;
+	case 3:
+		ui->displayUnit->setFocus();
+		ui->displayUnit->selectAll();
+		break;
+	case 4:
+		ui->alias->setFocus();
+		ui->alias->selectAll();
+		break;
+	}
 }
 
 void PropertiesDialog::displayUnitChanged(const QString & text)
